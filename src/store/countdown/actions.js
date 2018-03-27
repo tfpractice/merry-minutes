@@ -1,5 +1,5 @@
 import { Time } from '../../utils';
-import { SET_START_TIME } from './constants';
+import { SET_START_TIME, CLEAR_START_TIME } from './constants';
 
 const { format } = Time;
 

@@ -5,12 +5,10 @@ import { connect } from 'react-redux';
 import { Field } from 'redux-form';
 import Text from 'material-ui/Typography';
 
-//
-// import { AuthActs } from '../../modules';
-import { Form, Time } from '../../utils';
-import { Actions } from '../../store';
+import { Form } from '../../utils';
+import { Timer } from '../../store';
 
-const { Timer } = Actions;
+const { operations: { startString, endString }} = Timer;
 
 const { ClearForm } = Form;
 
@@ -25,11 +23,11 @@ const TimeBase = ({ handleSubmit }) => (
           alignItems="center">
           <Grid item xs={6}>
             <Text align="center">
-              {' '}
               <Field
                 name="start"
                 component="input"
                 type="time"
+                pattern="[\d]{2}:[\d]{2}:[\d]{2} [\w]{2}"
                 step={5}
                 placeholder="start time"
               />
@@ -42,6 +40,7 @@ const TimeBase = ({ handleSubmit }) => (
                 name="end"
                 component="input"
                 type="time"
+                pattern="[\d]{2}:[\d]{2}:[\d]{2} [\w]{2}"
                 step={5}
                 placeholder="end time"
               />
@@ -60,19 +59,19 @@ const TimeBase = ({ handleSubmit }) => (
 
 const ReduxTime = ClearForm(TimeBase);
 
-const TimeForm = ({ setTimes, formID }) => (
+const TimeForm = ({ createTimer, timer, formID }) => (
   <Grid container justify="center" alignContent="center" alignItems="center">
     <Grid item xs={11}>
-      <ReduxTime
-        form={formID}
-        initialValues={{
-          start: Time.format(),
-          end: Time.format(Time.add(15)()),
-        }}
-        onSubmit={setTimes}
-      />
+      <ReduxTime form={formID} initialValues={timer} onSubmit={createTimer} />
     </Grid>
   </Grid>
 );
 
-export default connect(null, Timer)(TimeForm);
+const mapState = ({ timer }) => ({
+  timer: {
+    start: startString(timer),
+    end: endString(timer),
+  },
+});
+
+export default connect(mapState, Timer.actions)(TimeForm);

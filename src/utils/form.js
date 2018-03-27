@@ -3,11 +3,12 @@ import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 
 export const onSubmitSuccess = (res, dispatch, { reset }) => reset();
+const enableReinitialize = true;
 
 export const ClearForm = form =>
   reduxForm({
     onSubmitSuccess,
-    enableReinitialize: true,
+    enableReinitialize,
   })(form);
 
 export const renderText = ({ input, meta: { error: e }, ...rest }) => (
