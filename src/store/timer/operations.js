@@ -34,5 +34,10 @@ export const setStart = s => t => timer(s, end(t));
 
 export const setEnd = e => t => timer(start(t), e);
 
-export const startValue = t => format(start(t));
-export const endValue = t => format(end(t));
+export const startValue = t => deFormat(start(t));
+export const endValue = t => deFormat(end(t));
+
+export const startString = t => format(start(t));
+export const endString = t => format(end(t));
+
+// export const fromInput=t=>timer(deFormat(start))
