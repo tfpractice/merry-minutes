@@ -9,7 +9,17 @@ const config = {
   },
   plugins: ['import', 'import-order-autofix', 'prettier', 'react'],
   settings: {
-    'import/resolver': { 'babel-module': {}, 'babel-module-alias': {} },
+    'import/resolver': {
+      'babel-module': {
+        root: ['./src'],
+        alias: {
+          src: './',
+          utils: 'utils',
+          components: 'components',
+        },
+      },
+      'babel-module-alias': {},
+    },
   },
   rules: {
     'array-bracket-spacing': [

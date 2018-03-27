@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from 'material-ui/Grid';
 
 import Timer from '../timer';
@@ -22,10 +22,7 @@ const App = () => (
         justify="center"
         alignContent="center"
         alignItems="center">
-        <Grid item xs={6}>
-          <Timer />
-        </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={11}>
           <Timer />
         </Grid>
       </Grid>
