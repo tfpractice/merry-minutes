@@ -1,4 +1,5 @@
 import { START_ACTIONS } from './constants';
+import { Time } from '../../utils';
 
-export default (state = Date.now(), { type, op }) =>
+export default (state = Time.format(), { type, op }) =>
   START_ACTIONS.has(type) ? op(state) : state;

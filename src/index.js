@@ -7,13 +7,16 @@ import Main from './components';
 import { Theme, serviceWorker } from './utils';
 import getStore from './store';
 
-const App = () => (
-  <Provider store={getStore()}>
+const store = getStore();
+
+const App = ({ store }) => (
+  <Provider store={store}>
     <MuiThemeProvider theme={Theme}>
       <Main />
     </MuiThemeProvider>
   </Provider>
 );
 
-render(<App />, document.getElementById('root'));
+window.store = store;
+render(<App store={store} />, document.getElementById('root'));
 serviceWorker();

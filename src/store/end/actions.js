@@ -1,8 +1,11 @@
 import { SET_END_TIME, CLEAR_END_TIME } from './constants';
+import { Time } from '../../utils';
 
-export const set = time => state => time;
+const { format } = Time;
 
-export const clear = () => state => Date.now();
+export const set = time => state => format(time);
+
+export const clear = () => state => format(Date.now());
 
 export const setEnd = time => ({ type: SET_END_TIME, op: set(time) });
 
