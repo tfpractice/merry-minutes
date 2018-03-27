@@ -1,0 +1,4 @@
+export const SET_START_TIME = `SET_START_TIME`;
+export const CLEAR_START_TIME = `CLEAR_START_TIME`;
+
+export const START_ACTIONS = new Set([ SET_START_TIME, CLEAR_START_TIME ]);
