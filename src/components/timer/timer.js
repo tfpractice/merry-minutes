@@ -91,11 +91,7 @@ const Timer = (props) => {
   );
 };
 
-const mapState = ({ clock, timer }, own) => {
-  console.log('own', own);
-  console.log('clock', clock);
-  return { clock, on: clock.active };
-};
+const mapState = ({ clock, timer }, own) => ({ clock, on: clock.active });
 
 const connected = connect(mapState, { ...TStore.actions, ...Clock.actions });
 
