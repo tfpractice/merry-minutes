@@ -15,7 +15,7 @@ import {
   remaining,
   setStart,
   setEnd,
-  startValue,
+  startVal,
   endValue,
   startString,
   endString,
@@ -75,15 +75,15 @@ describe('operations', () => {
       });
     });
 
-    describe('startValue', () => {
+    describe('startVal', () => {
       it('returns a input-string version of the start prop', () => {
-        expect(startValue(myTimer)).toEqual(myTimer.start);
+        expect(startVal(myTimer)).toEqual(myTimer.start);
       });
     });
 
-    describe('endValue', () => {
+    describe('endVal', () => {
       it('returns a input-string version of the end prop', () => {
-        expect(endValue(myTimer)).toEqual(myTimer.end);
+        expect(endVal(myTimer)).toEqual(myTimer.end);
       });
     });
   });
