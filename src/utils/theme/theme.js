@@ -1,5 +1,5 @@
-import { createMuiTheme } from 'material-ui/styles/';
 import { blueGrey, grey } from 'material-ui/colors';
+import { createMuiTheme } from 'material-ui/styles/';
 import { white } from 'material-ui/colors/common';
 
 const primary = blueGrey;

@@ -1,22 +1,22 @@
 import {
-  START_CLOCK,
-  PAUSE_CLOCK,
-  TOGGLE_CLOCK,
+  CLEAR_REMAINING_TIME,
   DECREMENT_CLOCK,
+  PAUSE_CLOCK,
   SET_CLOCK_STATUS,
   SET_REMAINING_TIME,
-  CLEAR_REMAINING_TIME,
+  START_CLOCK,
+  TOGGLE_CLOCK,
 } from './constants';
-import { remaining } from '../timer/operations';
 import {
-  toggle,
   clearRem,
+  decRem,
+  pause,
   setActive,
   setRemaining,
-  pause,
   start,
-  decRem,
+  toggle,
 } from './operations';
+import { remaining } from '../timer/operations';
 
 export const setStatus = status => ({
   type: SET_CLOCK_STATUS,
@@ -61,10 +61,8 @@ export const resetClock = () => dispatch =>
 
 export const beginCount = () => (dispatch, getState) =>
   Promise.resolve(remaining(getState().timer))
-    .then(t => (t ? decrement() : resetClock()))
-    .then(dispatch);
-
-export const decrementClock = () => (dispatch, getState) =>
-  Promise.resolve(remaining(getState().timer))
-    .then(t => (t ? decrement() : dispatch(pauseClock()).then(clearRemaining)))
+    .then(updateRemaining)
+    .then(dispatch)
+    .then(() => remaining(getState().timer))
+    .then(t => (t > 0 ? decrement() : resetClock()))
     .then(dispatch);

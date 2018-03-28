@@ -12,14 +12,11 @@ import { withInterval } from '../wrappers';
 
 const Timer = props => {
   const {
-    resetClock,
-    on,
     resetTimer,
     resetInterval,
     toggleClock,
     beginCount,
     toggleInterval,
-    startInterval,
     stopInterval,
     startClock,
   } = props;
@@ -36,10 +33,8 @@ const Timer = props => {
 
   const start = () => {
     startClock();
-    startInterval(beginCount, 1000);
+    resetInterval(beginCount, 1000);
   };
-
-  const begin = () => resetInterval(beginCount, 1000);
 
   return (
     <Grid container justify="center" alignContent="center" alignItems="center">
@@ -91,7 +86,11 @@ const Timer = props => {
   );
 };
 
-const mapState = ({ clock, timer }, own) => ({ clock, on: clock.active });
+const mapState = ({ clock, timer }, own) => ({
+  clock,
+  remaining: clock.remaining,
+  on: clock.active,
+});
 
 const connected = connect(mapState, { ...TStore.actions, ...Clock.actions });
 

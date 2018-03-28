@@ -1,21 +1,18 @@
-import { updateRemaining, beginCount, resetClock } from '../clock/actions';
+import { beginCount, resetClock, updateRemaining } from '../clock/actions';
 import {
-  SET_TIMER_START,
+  clear,
+  copy,
+  fromInput,
+  remaining,
+  setEnd,
+  setStart,
+} from './operations';
+import {
   CLEAR_TIMER,
   CREATE_TIMER,
   SET_TIMER_END,
+  SET_TIMER_START,
 } from './constants';
-import {
-  setStart,
-  timer,
-  fromInput,
-  copy,
-  startVal,
-  endVal,
-  remaining,
-  setEnd,
-  clear,
-} from './operations';
 
 export const setTimerStart = time => ({
   type: SET_TIMER_START,

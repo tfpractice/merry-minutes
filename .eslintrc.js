@@ -170,10 +170,10 @@ const config = {
     'no-shadow': [0, { hoist: 'never' }],
     semi: [2, 'always'],
     'prettier/prettier': [
-      2,
+      0,
       {
-        bracketSpacing: true,
-        jsxBracketSameLine: true,
+        bracketSpacing: false,
+        jsxBracketSameLine: false,
         semi: true,
         singleQuote: true,
         trailingComma: 'all',
