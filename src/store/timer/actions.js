@@ -48,16 +48,3 @@ export const submitTimer = tValues => dispatch =>
     .then(dispatch)
     .then(startClock)
     .then(dispatch);
-
-export const setTimes = ({ start, end }) => dispatch =>
-  Promise.resolve(setTimerStart(deFormat(start)))
-    .then(dispatch)
-    .then(() => setTimerEnd(deFormat(end)))
-    .then(dispatch)
-    .then(x => createTimer({ start, end }))
-    .then(dispatch)
-    .then(x =>
-      Promise.all([ startTime(start), endTime(end) ].map(dispatch)).then(() =>
-        dispatch(setRemaining(diff(start)(end)))
-      )
-    );

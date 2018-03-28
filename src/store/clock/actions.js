@@ -7,6 +7,7 @@ import {
   SET_REMAINING_TIME,
   CLEAR_REMAINING_TIME,
 } from './constants';
+import { remaining } from '../timer/operations';
 import {
   toggle,
   clearRem,
@@ -42,14 +43,17 @@ export const updateRemaining = rem => ({
   op: setRemaining(rem),
 });
 
-export const clearRemaining = rem => ({
+export const clearRemaining = () => ({
   type: CLEAR_REMAINING_TIME,
-  op: clearRem(rem),
+  op: clearRem,
 });
 
-export const decrementClock = () => ({
+export const decrement = () => ({
   type: DECREMENT_CLOCK,
   op: decRem,
 });
 
-// export const checkTime = () => dispatch => Promise.resolve;
+export const decrementClock = () => (dispatch, getState) =>
+  Promise.resolve(remaining(getState().timer))
+    .then(t => (t ? decrement() : dispatch(pauseClock()).then(clearRemaining)))
+    .then(dispatch);

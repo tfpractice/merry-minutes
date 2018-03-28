@@ -2,7 +2,9 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import { reduxForm, reset } from 'redux-form';
 
-export const onSubmitSuccess = (res, dispatch, { reset }) => reset();
+export const resetSuccess = (res, dispatch, { reset }) => reset();
+const onSubmitSuccess = resetSuccess;
+
 const enableReinitialize = true;
 
 export const ClearForm = form =>
