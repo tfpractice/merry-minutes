@@ -59,10 +59,10 @@ const TimeBase = ({ handleSubmit }) => (
 
 const ReduxTime = ClearForm(TimeBase);
 
-const TimeForm = ({ createTimer, timer, formID }) => (
+const TimeForm = ({ submitTimer, timer, formID }) => (
   <Grid container justify="center" alignContent="center" alignItems="center">
     <Grid item xs={11}>
-      <ReduxTime form={formID} initialValues={timer} onSubmit={createTimer} />
+      <ReduxTime form={formID} initialValues={timer} onSubmit={submitTimer} />
     </Grid>
   </Grid>
 );

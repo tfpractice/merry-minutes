@@ -8,7 +8,16 @@ import {
   CREATE_TIMER,
   SET_TIMER_END,
 } from './constants';
-import { setStart, timer, start, end, setEnd, clear } from './operations';
+import {
+  setStart,
+  timer,
+  startVal,
+  endVal,
+  start,
+  end,
+  setEnd,
+  clear,
+} from './operations';
 
 const { diff, deFormat } = Time;
 
@@ -21,9 +30,16 @@ export const setTimerEnd = time => ({ type: SET_TIMER_END, op: setEnd(time) });
 
 export const createTimer = t => ({
   type: CREATE_TIMER,
-  op: () => timer(deFormat(start(t)), deFormat(end(t))),
+  op: () => timer(t),
 });
 export const clearTimer = () => ({ type: CLEAR_TIMER, op: clear });
+
+const fromInput = t => timer(startVal(t), endVal(t));
+
+export const submitTimer = tValues => dispatch =>
+  Promise.resolve(fromInput(tValues))
+    .then(createTimer)
+    .then(dispatch);
 
 export const setTimes = ({ start, end }) => dispatch =>
   Promise.resolve(setTimerStart(deFormat(start)))
@@ -33,7 +49,7 @@ export const setTimes = ({ start, end }) => dispatch =>
     .then(x => createTimer({ start, end }))
     .then(dispatch)
     .then(x =>
-      Promise.all([ startTime(start), endTime(end) ].map(dispatch)).then(() =>
+      Promise.all([startTime(start), endTime(end)].map(dispatch)).then(() =>
         dispatch(setRemaining(diff(start)(end)))
       )
     );
