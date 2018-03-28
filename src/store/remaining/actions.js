@@ -20,6 +20,7 @@ export const clearRemaining = time => ({
   type: CLEAR_REMAINING_TIME,
   op: clear(time),
 });
+
 export const updateRemaining = time => ({
   type: UPDATE_REMAINING_TIME,
   op: update(time),
