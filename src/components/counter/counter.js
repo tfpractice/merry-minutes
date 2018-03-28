@@ -1,5 +1,5 @@
-import React from 'react';
 import Grid from 'material-ui/Grid';
+import React from 'react';
 import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 

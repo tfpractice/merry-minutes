@@ -9,7 +9,7 @@ import { endsAfter, endsLater, startsBefore } from './validate';
 import { Form } from '../../utils';
 import { Timer } from '../../store';
 
-const { operations: { startString, endString } } = Timer;
+const { operations: { startString, endString }} = Timer;
 
 const { ClearForm, resetSuccess, TimeInput } = Form;
 
@@ -37,7 +37,7 @@ const TimeBase = ({ handleSubmit }) => (
           <Grid item xs={6}>
             <Field
               name="end"
-              validate={[endsAfter, endsLater]}
+              validate={[ endsAfter, endsLater ]}
               component={TimeInput}
               type="time"
               step={5}
