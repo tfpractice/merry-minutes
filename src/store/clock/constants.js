@@ -1,11 +1,17 @@
 export const START_CLOCK = `START_CLOCK`;
+
 export const SET_CLOCK_STATUS = `SET_CLOCK_STATUS`;
+
 export const PAUSE_CLOCK = `PAUSE_CLOCK`;
+
 export const TOGGLE_CLOCK = `TOGGLE_CLOCK`;
 
 export const SET_REMAINING_TIME = `SET_REMAINING_TIME`;
+
 export const CLEAR_REMAINING_TIME = `CLEAR_REMAINING_TIME`;
+
 export const UPDATE_REMAINING_TIME = `UPDATE_REMAINING_TIME`;
+
 export const DECREMENT_CLOCK = `DECREMENT_CLOCK`;
 
 export const CLOCK_ACTIONS = new Set([

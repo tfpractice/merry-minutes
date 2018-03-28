@@ -17,7 +17,6 @@ const Timer = props => {
     toggleClock,
     beginCount,
     toggleInterval,
-    startInterval,
     stopInterval,
     startClock,
   } = props;
@@ -36,8 +35,6 @@ const Timer = props => {
     startClock();
     resetInterval(beginCount, 1000);
   };
-
-  const begin = () => resetInterval(beginCount, 1000);
 
   return (
     <Grid container justify="center" alignContent="center" alignItems="center">

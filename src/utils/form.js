@@ -1,8 +1,8 @@
-import React from 'react';
-import TextField from 'material-ui/TextField';
-import Text from 'material-ui/Typography';
-import { reduxForm } from 'redux-form';
 import Grid from 'material-ui/Grid';
+import React from 'react';
+import Text from 'material-ui/Typography';
+import TextField from 'material-ui/TextField';
+import { reduxForm } from 'redux-form';
 
 export const resetSuccess = (res, dispatch, { reset }) => reset();
 

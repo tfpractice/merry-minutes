@@ -12,6 +12,7 @@ const withInterval = Base =>
       this.resetInterval = this.resetInterval.bind(this);
       this.toggleInterval = this.toggleInterval.bind(this);
     }
+
     componentWillReceiveProps(nextProps) {
       nextProps.remaining < 1 && this.state.on && this.stopInterval();
     }

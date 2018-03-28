@@ -47,7 +47,7 @@ const TimeBase = ({ handleSubmit }) => (
           </Grid>
           <Grid item xs={11}>
             <Text align="center">
-              <Button type="submit">SetTime</Button>
+              <Button type="submit">Start Countdown</Button>
             </Text>
           </Grid>
         </Grid>

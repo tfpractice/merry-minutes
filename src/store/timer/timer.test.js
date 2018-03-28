@@ -2,23 +2,23 @@ import 'jasmine-expect';
 import moment from 'moment';
 
 import {
-  clear,
-  timer,
-  start,
-  end,
-  copy,
-  checkStart,
   checkEnd,
   checkOrder,
-  ensureStart,
+  checkStart,
+  clear,
+  copy,
   duration,
-  remaining,
-  setStart,
-  setEnd,
-  startVal,
-  endValue,
-  startString,
+  end,
   endString,
+  endValue,
+  ensureStart,
+  remaining,
+  setEnd,
+  setStart,
+  start,
+  startString,
+  startVal,
+  timer,
 } from './operations';
 
 const myTimer = timer();

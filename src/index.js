@@ -1,11 +1,11 @@
 import React from 'react';
+import { MuiThemeProvider } from 'material-ui/styles';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { MuiThemeProvider } from 'material-ui/styles';
 
-import Main from './components';
-import { Theme, serviceWorker } from './utils';
 import getStore from './store';
+import Main from './components';
+import { serviceWorker, Theme } from './utils';
 
 const store = getStore();
 

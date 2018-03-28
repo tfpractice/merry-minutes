@@ -5,7 +5,7 @@ import { Timer } from '../../store';
 
 const { deFormat, fieldFormat } = Time;
 
-const { operations: { fromInput, checkStart, checkEnd } } = Timer;
+const { operations: { fromInput, checkStart, checkEnd }} = Timer;
 
 export const startsBefore = (val, all) =>
   checkStart(fromInput(all)) ? '' : 'Start Time must be before end time';
