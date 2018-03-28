@@ -2,6 +2,7 @@ import { Time } from '../../utils';
 import { setStart as startTime } from '../start/actions';
 import { setEnd as endTime } from '../end/actions';
 import { setRemaining } from '../remaining/actions';
+import { updateRemaining, startClock } from '../clock/actions';
 import {
   SET_TIMER_START,
   CLEAR_TIMER,
@@ -16,6 +17,7 @@ import {
   endVal,
   start,
   end,
+  remaining,
   setEnd,
   clear,
 } from './operations';
@@ -40,6 +42,11 @@ const fromInput = t => timer(startVal(t), endVal(t));
 export const submitTimer = tValues => dispatch =>
   Promise.resolve(fromInput(tValues))
     .then(createTimer)
+    .then(dispatch)
+    .then(x => remaining(fromInput(tValues)))
+    .then(updateRemaining)
+    .then(dispatch)
+    .then(startClock)
     .then(dispatch);
 
 export const setTimes = ({ start, end }) => dispatch =>

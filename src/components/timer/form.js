@@ -59,13 +59,23 @@ const TimeBase = ({ handleSubmit }) => (
 
 const ReduxTime = ClearForm(TimeBase);
 
-const TimeForm = ({ submitTimer, timer, formID }) => (
-  <Grid container justify="center" alignContent="center" alignItems="center">
-    <Grid item xs={11}>
-      <ReduxTime form={formID} initialValues={timer} onSubmit={submitTimer} />
+const TimeForm = ({ submitTimer, timer, formID, ...props }) => {
+  console.log('form props', props);
+  return (
+    <Grid container justify="center" alignContent="center" alignItems="center">
+      <Grid item xs={11}>
+        <ReduxTime
+          form={formID}
+          initialValues={timer}
+          onSubmit={(vals) => {
+            console.log('vals', vals);
+            submitTimer(vals).then(props.startInterval);
+          }}
+        />
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
+};
 
 const mapState = ({ timer }) => ({
   timer: {

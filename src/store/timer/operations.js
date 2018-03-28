@@ -38,4 +38,4 @@ export const ensureStart = s => t =>
   checkStart(start(t)(t)) && checkEnd(end(t)(t));
 
 export const duration = t => diff(end(t))(start(t));
-export const remaining = t => diff(moment())(end(t));
+export const remaining = t => diff(end(t))(moment());

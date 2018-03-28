@@ -8,15 +8,6 @@ export const CLEAR_REMAINING_TIME = `CLEAR_REMAINING_TIME`;
 export const UPDATE_REMAINING_TIME = `UPDATE_REMAINING_TIME`;
 export const DECREMENT_CLOCK = `DECREMENT_CLOCK`;
 
-//
-// export const REMAINING_ACTIONS = new Set([
-//   SET_REMAINING_TIME,
-//   CLEAR_REMAINING_TIME,
-//   DECREMENT_CLOCK,
-// ]);
-
-// export const PAUSE_CLOCK = `PAUSE_CLOCK`;
-
 export const CLOCK_ACTIONS = new Set([
   START_CLOCK,
   PAUSE_CLOCK,
