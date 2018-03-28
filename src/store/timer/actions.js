@@ -11,6 +11,7 @@ import {
 import {
   setStart,
   timer,
+  copy,
   startVal,
   endVal,
   start,
@@ -26,11 +27,11 @@ export const setTimerStart = time => ({
   op: setStart(time),
 });
 
-export const setTimerEnd = time => ({ type: SET_TIMER_END, op: setEnd(time) });
+export const setTimerEnd = t => ({ type: SET_TIMER_END, op: setEnd(t) });
 
 export const createTimer = t => ({
   type: CREATE_TIMER,
-  op: () => timer(t),
+  op: () => copy(t),
 });
 export const clearTimer = () => ({ type: CLEAR_TIMER, op: clear });
 
@@ -49,7 +50,7 @@ export const setTimes = ({ start, end }) => dispatch =>
     .then(x => createTimer({ start, end }))
     .then(dispatch)
     .then(x =>
-      Promise.all([startTime(start), endTime(end)].map(dispatch)).then(() =>
+      Promise.all([ startTime(start), endTime(end) ].map(dispatch)).then(() =>
         dispatch(setRemaining(diff(start)(end)))
       )
     );

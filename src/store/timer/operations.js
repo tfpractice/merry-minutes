@@ -37,5 +37,5 @@ export const checkOrder = t1 => t0 =>
 export const ensureStart = s => t =>
   checkStart(start(t)(t)) && checkEnd(end(t)(t));
 
-export const duration = t => diff(start(t), end(t));
-export const remaining = t => diff(moment(), end(t));
+export const duration = t => diff(end(t))(start(t));
+export const remaining = t => diff(moment())(end(t));
