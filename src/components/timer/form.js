@@ -8,7 +8,7 @@ import Text from 'material-ui/Typography';
 import { Form } from '../../utils';
 import { Timer } from '../../store';
 
-const { operations: { startString, startField, endField, endString }} = Timer;
+const { operations: { startString, endString } } = Timer;
 
 const { ClearForm, resetSuccess } = Form;
 

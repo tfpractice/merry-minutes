@@ -1,22 +1,18 @@
-import {
-  START_CLOCK,
+import {START_CLOCK,
   PAUSE_CLOCK,
   TOGGLE_CLOCK,
   DECREMENT_CLOCK,
   SET_CLOCK_STATUS,
   SET_REMAINING_TIME,
-  CLEAR_REMAINING_TIME,
-} from './constants';
+  CLEAR_REMAINING_TIME,} from './constants';
 import { remaining } from '../timer/operations';
-import {
-  toggle,
+import {toggle,
   clearRem,
   setActive,
   setRemaining,
   pause,
   start,
-  decRem,
-} from './operations';
+  decRem,} from './operations';
 
 export const setStatus = status => ({
   type: SET_CLOCK_STATUS,

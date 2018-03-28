@@ -27,7 +27,7 @@ const config = {
       'always',
       { arraysInArrays: false, objectsInArrays: false, singleValue: true },
     ],
-    'arrow-parens': [2, 'as-needed', { requireForBlockBody: true }],
+    'arrow-parens': [2, 'as-needed', { requireForBlockBody: false }],
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
     camelcase: 0,
     'comma-dangle': [
@@ -92,6 +92,7 @@ const config = {
         singleLine: { afterColon: true, beforeColon: false, mode: 'minimum' },
       },
     ],
+    quotes: [2, 'backtick'],
     'line-comment-position': [2, { position: 'above' }],
     'lines-around-comment': [
       2,
@@ -161,13 +162,14 @@ const config = {
       },
     ],
     'no-shadow': [0, { hoist: 'never' }],
-    semi: [0, 'always'],
+    semi: [2, 'always'],
     'prettier/prettier': [
-      0,
+      2,
       {
-        bracketSpacing: false,
+        bracketSpacing: true,
         jsxBracketSameLine: true,
         semi: true,
+        singleQuote: true,
         trailingComma: 'all',
       },
     ],
@@ -196,7 +198,7 @@ const config = {
       {
         ignoreCase: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
+        memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
       },
     ],
 

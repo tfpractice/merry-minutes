@@ -10,7 +10,7 @@ import { Clock, Timer as TStore } from '../../store';
 import Counter from '../counter';
 import TimeForm from './form';
 
-const Timer = (props) => {
+const Timer = props => {
   const {
     resetClock,
     on,
