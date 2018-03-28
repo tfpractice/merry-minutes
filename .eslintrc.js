@@ -149,14 +149,19 @@ const config = {
     'padded-blocks': [2, 'never'],
     'padding-line-between-statements': [
       2,
-      { blankLine: 'always', next: '*', prev: ['const', 'let', 'var'] },
       {
         blankLine: 'always',
-        next: ['const', 'let', 'var'],
-        prev: ['const', 'let', 'var'],
+        next: '*',
+        prev: ['export', 'const', 'let', 'var'],
+      },
+      {
+        blankLine: 'always',
+        next: ['export', 'const', 'let', 'var'],
+        prev: ['export', 'const', 'let', 'var'],
       },
     ],
-
+    'no-shadow': [0, { hoist: 'never' }],
+    semi: [0, 'always'],
     'prettier/prettier': [
       0,
       {

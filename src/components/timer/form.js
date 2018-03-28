@@ -8,7 +8,7 @@ import Text from 'material-ui/Typography';
 import { Form } from '../../utils';
 import { Timer } from '../../store';
 
-const { operations: { startString, endString }} = Timer;
+const { operations: { startString, startField, endField, endString }} = Timer;
 
 const { ClearForm, resetSuccess } = Form;
 
@@ -60,7 +60,6 @@ const TimeBase = ({ handleSubmit }) => (
 const ReduxTime = ClearForm(TimeBase);
 
 const TimeForm = ({ submitTimer, timer, formID, ...props }) => {
-  console.log('form props', props);
   const startAndReset = (res, dispatch, { reset }) =>
     props.startInterval() && resetSuccess(res, dispatch, { reset });
 
