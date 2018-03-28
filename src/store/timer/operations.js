@@ -17,6 +17,16 @@ export const end = ({ start, end } = timer()) => end;
 
 export const copy = t => timer(start(t), end(t));
 
+export const setStart = s => t => timer(s, end(t));
+
+export const setEnd = e => t => timer(start(t), e);
+
+export const startValue = t => deFormat(start(t));
+export const endValue = t => deFormat(end(t));
+
+export const startString = t => format(start(t));
+export const endString = t => format(end(t));
+
 export const checkStart = t => start(t).isBefore(end(t));
 
 export const checkEnd = t => end(t).isAfter(start(t));
@@ -29,15 +39,3 @@ export const ensureStart = s => t =>
 
 export const duration = t => diff(start(t), end(t));
 export const remaining = t => diff(moment(), end(t));
-
-export const setStart = s => t => timer(s, end(t));
-
-export const setEnd = e => t => timer(start(t), e);
-
-export const startValue = t => deFormat(start(t));
-export const endValue = t => deFormat(end(t));
-
-export const startString = t => format(start(t));
-export const endString = t => format(end(t));
-
-// export const fromInput=t=>timer(deFormat(start))
