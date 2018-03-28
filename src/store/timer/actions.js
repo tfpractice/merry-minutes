@@ -1,26 +1,18 @@
-import { Time } from '../../utils';
-import { setStart as startTime } from '../start/actions';
-import { setEnd as endTime } from '../end/actions';
-import { setRemaining } from '../remaining/actions';
+import { beginCount, resetClock, updateRemaining } from '../clock/actions';
 import {
-  SET_TIMER_START,
+  clear,
+  copy,
+  fromInput,
+  remaining,
+  setEnd,
+  setStart,
+} from './operations';
+import {
   CLEAR_TIMER,
   CREATE_TIMER,
   SET_TIMER_END,
+  SET_TIMER_START,
 } from './constants';
-import {
-  setStart,
-  timer,
-  copy,
-  startVal,
-  endVal,
-  start,
-  end,
-  setEnd,
-  clear,
-} from './operations';
-
-const { diff, deFormat } = Time;
 
 export const setTimerStart = time => ({
   type: SET_TIMER_START,
@@ -33,24 +25,21 @@ export const createTimer = t => ({
   type: CREATE_TIMER,
   op: () => copy(t),
 });
+
 export const clearTimer = () => ({ type: CLEAR_TIMER, op: clear });
 
-const fromInput = t => timer(startVal(t), endVal(t));
+export const resetTimer = () => dispatch =>
+  Promise.resolve(clearTimer())
+    .then(dispatch)
+    .then(resetClock)
+    .then(dispatch);
 
 export const submitTimer = tValues => dispatch =>
   Promise.resolve(fromInput(tValues))
     .then(createTimer)
+    .then(dispatch)
+    .then(x => remaining(fromInput(tValues)))
+    .then(updateRemaining)
+    .then(dispatch)
+    .then(beginCount)
     .then(dispatch);
-
-export const setTimes = ({ start, end }) => dispatch =>
-  Promise.resolve(setTimerStart(deFormat(start)))
-    .then(dispatch)
-    .then(() => setTimerEnd(deFormat(end)))
-    .then(dispatch)
-    .then(x => createTimer({ start, end }))
-    .then(dispatch)
-    .then(x =>
-      Promise.all([ startTime(start), endTime(end) ].map(dispatch)).then(() =>
-        dispatch(setRemaining(diff(start)(end)))
-      )
-    );

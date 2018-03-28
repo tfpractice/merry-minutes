@@ -7,7 +7,13 @@ const config = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['import', 'import-order-autofix', 'prettier', 'react'],
+  plugins: [
+    'import',
+    'import-order-autofix',
+    'sort-imports-es6-autofix',
+    'prettier',
+    'react',
+  ],
   settings: {
     'import/resolver': {
       'babel-module': {
@@ -27,7 +33,7 @@ const config = {
       'always',
       { arraysInArrays: false, objectsInArrays: false, singleValue: true },
     ],
-    'arrow-parens': [2, 'as-needed', { requireForBlockBody: true }],
+    'arrow-parens': [2, 'as-needed', { requireForBlockBody: false }],
     'brace-style': [2, '1tbs', { allowSingleLine: true }],
     camelcase: 0,
     'comma-dangle': [
@@ -92,6 +98,7 @@ const config = {
         singleLine: { afterColon: true, beforeColon: false, mode: 'minimum' },
       },
     ],
+    quotes: [2, 'backtick'],
     'line-comment-position': [2, { position: 'above' }],
     'lines-around-comment': [
       2,
@@ -149,20 +156,26 @@ const config = {
     'padded-blocks': [2, 'never'],
     'padding-line-between-statements': [
       2,
-      { blankLine: 'always', next: '*', prev: ['const', 'let', 'var'] },
       {
         blankLine: 'always',
-        next: ['const', 'let', 'var'],
-        prev: ['const', 'let', 'var'],
+        next: '*',
+        prev: ['export', 'const', 'let', 'var'],
+      },
+      {
+        blankLine: 'always',
+        next: ['export', 'const', 'let', 'var'],
+        prev: ['export', 'const', 'let', 'var'],
       },
     ],
-
+    'no-shadow': [0, { hoist: 'never' }],
+    semi: [2, 'always'],
     'prettier/prettier': [
       0,
       {
         bracketSpacing: false,
-        jsxBracketSameLine: true,
+        jsxBracketSameLine: false,
         semi: true,
+        singleQuote: true,
         trailingComma: 'all',
       },
     ],
@@ -191,10 +204,17 @@ const config = {
       {
         ignoreCase: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ['single', 'multiple', 'all', 'none'],
+        memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
       },
     ],
-
+    'sort-imports-es6-autofix/sort-imports-es6': [
+      2,
+      {
+        ignoreCase: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
+      },
+    ],
     'space-before-function-paren': 0,
     'space-infix-ops': 2,
     strict: 1,

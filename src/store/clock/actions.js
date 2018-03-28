@@ -1,21 +1,22 @@
 import {
-  START_CLOCK,
-  PAUSE_CLOCK,
-  TOGGLE_CLOCK,
+  CLEAR_REMAINING_TIME,
   DECREMENT_CLOCK,
+  PAUSE_CLOCK,
   SET_CLOCK_STATUS,
   SET_REMAINING_TIME,
-  CLEAR_REMAINING_TIME,
+  START_CLOCK,
+  TOGGLE_CLOCK,
 } from './constants';
 import {
-  toggle,
   clearRem,
+  decRem,
+  pause,
   setActive,
   setRemaining,
-  pause,
   start,
-  decRem,
+  toggle,
 } from './operations';
+import { remaining } from '../timer/operations';
 
 export const setStatus = status => ({
   type: SET_CLOCK_STATUS,
@@ -42,14 +43,26 @@ export const updateRemaining = rem => ({
   op: setRemaining(rem),
 });
 
-export const clearRemaining = rem => ({
+export const clearRemaining = () => ({
   type: CLEAR_REMAINING_TIME,
-  op: clearRem(rem),
+  op: clearRem,
 });
 
-export const decrementClock = () => ({
+export const decrement = () => ({
   type: DECREMENT_CLOCK,
   op: decRem,
 });
 
-// export const checkTime = () => dispatch => Promise.resolve;
+export const resetClock = () => dispatch =>
+  Promise.resolve(pauseClock())
+    .then(dispatch)
+    .then(clearRemaining)
+    .then(dispatch);
+
+export const beginCount = () => (dispatch, getState) =>
+  Promise.resolve(remaining(getState().timer))
+    .then(updateRemaining)
+    .then(dispatch)
+    .then(() => remaining(getState().timer))
+    .then(t => (t > 0 ? decrement() : resetClock()))
+    .then(dispatch);
