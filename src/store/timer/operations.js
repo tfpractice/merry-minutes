@@ -37,6 +37,8 @@ export const checkStart = t => start(t).isBefore(end(t));
 
 export const checkEnd = t => end(t).isAfter(start(t));
 
+export const checkEndLater = t => end(t).isAfter(moment());
+
 export const checkOrder = t1 => t0 =>
   checkStart(start(t1)(t0)) && checkEnd(end(t1)(t0));
 
@@ -46,3 +48,5 @@ export const ensureStart = s => t =>
 export const duration = t => diff(end(t))(start(t));
 
 export const remaining = t => diff(end(t))(moment());
+
+export const fromInput = t => timer(startVal(t), endVal(t));

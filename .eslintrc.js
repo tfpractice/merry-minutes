@@ -7,7 +7,13 @@ const config = {
     ecmaVersion: 7,
     sourceType: 'module',
   },
-  plugins: ['import', 'import-order-autofix', 'prettier', 'react'],
+  plugins: [
+    'import',
+    'import-order-autofix',
+    'sort-imports-es6-autofix',
+    'prettier',
+    'react',
+  ],
   settings: {
     'import/resolver': {
       'babel-module': {
@@ -201,7 +207,14 @@ const config = {
         memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
       },
     ],
-
+    'sort-imports-es6-autofix/sort-imports-es6': [
+      2,
+      {
+        ignoreCase: true,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ['none', 'single', 'multiple', 'all'],
+      },
+    ],
     'space-before-function-paren': 0,
     'space-infix-ops': 2,
     strict: 1,

@@ -8,6 +8,7 @@ import {
 import {
   setStart,
   timer,
+  fromInput,
   copy,
   startVal,
   endVal,
@@ -29,8 +30,6 @@ export const createTimer = t => ({
 });
 
 export const clearTimer = () => ({ type: CLEAR_TIMER, op: clear });
-
-const fromInput = t => timer(startVal(t), endVal(t));
 
 export const resetTimer = () => dispatch =>
   Promise.resolve(clearTimer())

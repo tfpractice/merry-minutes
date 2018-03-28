@@ -1,14 +1,14 @@
-import React from 'react';
-import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
+import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
+import Grid from 'material-ui/Grid';
+import React from 'react';
 import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
-import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
 
-import { withInterval } from '../wrappers';
-import { Clock, Timer as TStore } from '../../store';
 import Counter from '../counter';
 import TimeForm from './form';
+import { Clock, Timer as TStore } from '../../store';
+import { withInterval } from '../wrappers';
 
 const Timer = props => {
   const {
