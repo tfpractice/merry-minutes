@@ -10,7 +10,7 @@ import { Timer } from '../../store';
 
 const { operations: { startString, endString }} = Timer;
 
-const { ClearForm } = Form;
+const { ClearForm, resetSuccess } = Form;
 
 const TimeBase = ({ handleSubmit }) => (
   <Grid container justify="center" alignContent="center" alignItems="center">
@@ -61,16 +61,17 @@ const ReduxTime = ClearForm(TimeBase);
 
 const TimeForm = ({ submitTimer, timer, formID, ...props }) => {
   console.log('form props', props);
+  const startAndReset = (res, dispatch, { reset }) =>
+    props.startInterval() && resetSuccess(res, dispatch, { reset });
+
   return (
     <Grid container justify="center" alignContent="center" alignItems="center">
       <Grid item xs={11}>
         <ReduxTime
           form={formID}
           initialValues={timer}
-          onSubmit={(vals) => {
-            console.log('vals', vals);
-            submitTimer(vals).then(props.startInterval);
-          }}
+          onSubmit={submitTimer}
+          onSubmitSuccess={startAndReset}
         />
       </Grid>
     </Grid>

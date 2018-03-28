@@ -9,6 +9,7 @@ const withInterval = Base =>
       this.interval = null;
       this.startInterval = this.startInterval.bind(this);
       this.stopInterval = this.stopInterval.bind(this);
+      this.resetInterval = this.resetInterval.bind(this);
       this.toggleInterval = this.toggleInterval.bind(this);
     }
 
@@ -20,6 +21,7 @@ const withInterval = Base =>
     }
 
     startInterval(cb, dur) {
+      this.stopInterval();
       this.setState({ on: true }, () => this.setInt(cb, dur));
     }
 
@@ -30,12 +32,29 @@ const withInterval = Base =>
     stopInterval() {
       this.setState({ on: false }, this.clearInt);
     }
+
+    resetInterval(cb, dur) {
+      this.stopInterval();
+      this.startInterval(cb, dur);
+    }
+
     render() {
       const { on } = this.state;
 
-      const { stopInterval, startInterval, toggleInterval } = this;
+      const {
+        stopInterval,
+        resetInterval,
+        startInterval,
+        toggleInterval,
+      } = this;
 
-      const through = { on, stopInterval, toggleInterval, startInterval };
+      const through = {
+        on,
+        stopInterval,
+        resetInterval,
+        toggleInterval,
+        startInterval,
+      };
 
       return <Base {...this.props} {...through} />;
     }

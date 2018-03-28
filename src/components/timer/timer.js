@@ -6,16 +6,40 @@ import { connect } from 'react-redux';
 import Card, { CardHeader, CardContent, CardActions } from 'material-ui/Card';
 
 import { withInterval } from '../wrappers';
-import { Clock } from '../../store';
+import { Clock, Timer as TStore } from '../../store';
 import Counter from '../counter';
 import TimeForm from './form';
 
-const Timer = ({ toggleClock, decrementClock, ...props }) => {
-  const toggle = () =>
-    toggleClock() && props.toggleInterval(decrementClock, 1000);
+const Timer = (props) => {
+  const {
+    resetClock,
+    on,
+    resetTimer,
+    resetInterval,
+    toggleClock,
+    beginCount,
+    toggleInterval,
+    startInterval,
+    stopInterval,
+    startClock,
+  } = props;
 
-  const start = () =>
-    props.startClock() && props.startInterval(decrementClock, 1000);
+  const toggle = () => {
+    toggleClock();
+    toggleInterval(beginCount, 1000);
+  };
+
+  const stop = () => {
+    stopInterval();
+    resetTimer();
+  };
+
+  const start = () => {
+    startClock();
+    startInterval(beginCount, 1000);
+  };
+
+  const begin = () => resetInterval(beginCount, 1000);
 
   return (
     <Grid container justify="center" alignContent="center" alignItems="center">
@@ -57,7 +81,7 @@ const Timer = ({ toggleClock, decrementClock, ...props }) => {
                 <Button onClick={toggle}>Toggle Countdown</Button>
               </Grid>
               <Grid item xs={4}>
-                <Button>Clear Timer</Button>
+                <Button onClick={stop}>Clear Timer</Button>
               </Grid>
             </Grid>
           </CardActions>
@@ -73,6 +97,6 @@ const mapState = ({ clock, timer }, own) => {
   return { clock, on: clock.active };
 };
 
-const connected = connect(mapState, Clock.actions);
+const connected = connect(mapState, { ...TStore.actions, ...Clock.actions });
 
 export default connected(withInterval(Timer));

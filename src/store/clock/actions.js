@@ -53,6 +53,18 @@ export const decrement = () => ({
   op: decRem,
 });
 
+export const resetClock = () => dispatch =>
+  Promise.resolve(pauseClock())
+    .then(dispatch)
+    .then(clearRemaining)
+    .then(dispatch);
+
+export const beginCount = () => (dispatch, getState) =>
+  Promise.resolve(remaining(getState().timer))
+    .then(t => (t ? decrement() : resetClock()))
+    .then(x => console.log('x', x) || x)
+    .then(dispatch);
+
 export const decrementClock = () => (dispatch, getState) =>
   Promise.resolve(remaining(getState().timer))
     .then(t => (t ? decrement() : dispatch(pauseClock()).then(clearRemaining)))

@@ -1,8 +1,4 @@
-import { Time } from '../../utils';
-import { setStart as startTime } from '../start/actions';
-import { setEnd as endTime } from '../end/actions';
-import { setRemaining } from '../remaining/actions';
-import { updateRemaining, startClock } from '../clock/actions';
+import { updateRemaining, beginCount, resetClock } from '../clock/actions';
 import {
   SET_TIMER_START,
   CLEAR_TIMER,
@@ -15,14 +11,10 @@ import {
   copy,
   startVal,
   endVal,
-  start,
-  end,
   remaining,
   setEnd,
   clear,
 } from './operations';
-
-const { diff, deFormat } = Time;
 
 export const setTimerStart = time => ({
   type: SET_TIMER_START,
@@ -35,9 +27,16 @@ export const createTimer = t => ({
   type: CREATE_TIMER,
   op: () => copy(t),
 });
+
 export const clearTimer = () => ({ type: CLEAR_TIMER, op: clear });
 
 const fromInput = t => timer(startVal(t), endVal(t));
+
+export const resetTimer = () => dispatch =>
+  Promise.resolve(clearTimer())
+    .then(dispatch)
+    .then(resetClock)
+    .then(dispatch);
 
 export const submitTimer = tValues => dispatch =>
   Promise.resolve(fromInput(tValues))
@@ -46,5 +45,5 @@ export const submitTimer = tValues => dispatch =>
     .then(x => remaining(fromInput(tValues)))
     .then(updateRemaining)
     .then(dispatch)
-    .then(startClock)
+    .then(beginCount)
     .then(dispatch);

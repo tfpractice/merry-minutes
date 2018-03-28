@@ -7,6 +7,5 @@ import { reducer as timer } from './timer';
 export default combineReducers({
   timer,
   clock,
-
   form,
 });
